@@ -1,0 +1,103 @@
+import React, { useState } from 'react';
+import { View, Image, Text, Button, StyleSheet, SafeAreaView } from 'react-native';
+
+export default function App() {
+  const [content, setContent] = useState('dashboard'); 
+
+  const onPress = (page) => {
+    setContent(page);
+  };
+
+  return (
+    <View style={styles.container}>
+      <View style={styles.leftpanel}>
+        <Text style={styles.title}>Dashboard</Text>
+        <View style={styles.buttonContainer}>
+          <Button onPress={() => onPress('dashboard')} title="Dashboard" color='#333' />
+        </View>
+        <View style={styles.buttonContainer}>
+          <Button onPress={() => onPress('profile')} title="Profile" color='#333' />
+        </View>
+        <View style={styles.buttonContainer}>
+          <Button onPress={() => onPress('photos')} title="Photos" color='#333' />
+        </View>
+        <View style={styles.buttonContainer4}>
+          <Button onPress={() => onPress('logout')} title="Log Out" color='#333' />
+        </View>
+      </View>
+
+      <View style={styles.content}>
+        {content === 'dashboard' && (
+          <Image style={{width: '100%', height: '100%'}} source={require('./assets/raze.webp')} />
+          )}
+      </View>    
+        {content === 'profile' && (
+          <View style={styles.profilecontent}>
+            <Text style={styles.contentText}>Name: Chodorick Justine G. Tingting</Text>
+            <Text style={styles.contentText}>Sex: Male</Text>
+            <Text style={styles.contentText}>Section: IT3R3</Text>
+            <Text style={styles.contentText}>Address: Tagoloan</Text>
+          </View>  
+          )}
+
+        {content === 'photos' && (
+          <Text style={styles.contentText}>This is the Photos</Text>}
+
+        {content === 'logout' && <Text style={styles.contentText}>You have logged out</Text>}
+      </View>
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    marginTop: 50,
+    flex: 1,
+    flexDirection: 'row',
+  },
+
+  leftpanel: {
+    width: 150,
+    backgroundColor: '#333',
+    paddingTop: 40,
+    paddingLeft: 20,
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+    position: 'absolute',
+    left: 0,
+    top: 0,
+    bottom: 0,
+  },
+
+  title: {
+    color: '#ffffff',
+    fontSize: 25,
+    fontWeight: 'bold',
+  },
+
+  buttonContainer: {
+    marginTop: 20,
+    marginRight: 20,
+    borderWidth: 2,
+    borderRadius: 15,
+    marginBottom: 10,
+  },
+
+  buttonContainer4: {
+    marginTop: 500,
+    paddingRight: 20,
+  },
+
+  content: {
+    flex: 1,
+    marginLeft: 150,
+    backgroundColor: '#f0f0f0',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+
+  contentText: {
+    fontSize: 24,
+    color: '#333',
+  },
+});
